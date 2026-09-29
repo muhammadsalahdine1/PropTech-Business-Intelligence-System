@@ -25,10 +25,6 @@
 - [Regulatory Compliance](#-regulatory-compliance)
 - [Technology Stack](#-technology-stack)
 - [Project Structure](#-project-structure)
-- [Getting Started](#-getting-started)
-- [Sample Data](#-sample-data)
-- [Contributing](#-contributing)
-- [License](#-license)
 
 ---
 
