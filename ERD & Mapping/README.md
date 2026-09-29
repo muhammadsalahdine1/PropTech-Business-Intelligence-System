@@ -16,7 +16,6 @@
 - [Architecture Principles](#-architecture-principles)
 - [Entity-Relationship Diagram](#-entity-relationship-diagram)
 - [Table Descriptions](#-table-descriptions)
-- [Relationship Mapping](#-relationship-mapping)
 - [Analytical Views](#-analytical-views)
 
 ---
