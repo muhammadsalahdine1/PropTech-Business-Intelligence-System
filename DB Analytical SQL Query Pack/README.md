@@ -5,10 +5,10 @@ How are property prices trending by city and property type over the last 5 years
 Why This Matters to Nawy
 Nawy's profitability depends on identifying high-appreciation markets before competitors do. 
 
-This query serves three critical business functions:\n
-Pricing Strategy — Sales teams need current market rates per square meter to price listings competitively.\n
-Nawy Shares Selection — The investment committee uses historical appreciation to select properties for fractional offerings.\n
-Developer Partnership Negotiation — Nawy can negotiate better commission rates with developers whose projects appreciate consistently.\n
+This query serves three critical business functions:
+Pricing Strategy — Sales teams need current market rates per square meter to price listings competitively.
+Nawy Shares Selection — The investment committee uses historical appreciation to select properties for fractional offerings.
+Developer Partnership Negotiation — Nawy can negotiate better commission rates with developers whose projects appreciate consistently.
 
 What "Good" Looks Like
 Appreciation > 20%/year → Hot market → Prioritize inventory
