@@ -1,4 +1,4 @@
-🎯# Business Question: 
+# Business Question: 
 How are property prices trending by city and property type over the last 5 years, and which segments are appreciating fastest?
 
 💼 Business Context: 
