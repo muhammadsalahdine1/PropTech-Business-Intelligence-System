@@ -3,7 +3,9 @@ How are property prices trending by city and property type over the last 5 years
 
 💼 Business Context: 
 Why This Matters to Nawy
-Nawy's profitability depends on identifying high-appreciation markets before competitors do. This query serves three critical business functions:
+Nawy's profitability depends on identifying high-appreciation markets before competitors do. 
+
+This query serves three critical business functions:
 
 Pricing Strategy — Sales teams need current market rates per square meter to price listings competitively.
 
