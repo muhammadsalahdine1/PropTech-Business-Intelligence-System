@@ -77,37 +77,20 @@ Nawy's job is to maximize both **occupancy** (revenue for owners) and **on-time 
 
 ## 🔍 The Query
 
-```sql
--- Query 5: Occupancy & Rental Yield Analysis
--- Business Question:
---   What is the average occupancy rate across Nawy Unlocked
---   properties, how does it vary by location and service type,
---   and which segments deliver the highest rental yield?
---
--- Used By:
---   - Nawy Unlocked operations (daily monitoring)
---   - Owner relations (performance reporting)
---   - Investment committee (property selection)
---   - Finance (revenue forecasting)
---
--- Output:
---   Part 1: Per-contract performance with occupancy metrics
---   Part 2: Summary by city, district, and service type
---
-
 USE NawyProptechDB;
 GO
 
 -- PART 1: CONTRACT-LEVEL PERFORMANCE
--- For each management contract, we compute:
+-- For each management contract, compute:
 --   - Property and owner details
 --   - Contract service type and fee structure
 --   - Lease metrics (total, active, expired)
 --   - Rent payment metrics (collected, overdue, on-time rate)
 --   - Occupancy rate and revenue generated
 --
--- Occupancy rate = active leases / total leases × 100
--- On-time rate = (payments - overdue) / payments × 100
+-- Metrics:
+--   Occupancy rate = active leases / total leases × 100
+--   On-time rate = paid payments / total payments × 100
 
 WITH contract_performance AS (
     SELECT
@@ -132,8 +115,8 @@ WITH contract_performance AS (
 
         -- Lease metrics
         COUNT(DISTINCT l.lease_id)              AS total_leases,
-        SUM(CASE WHEN l.status = 'active' THEN 1 ELSE 0 END)    AS active_leases,
-        SUM(CASE WHEN l.status = 'expired' THEN 1 ELSE 0 END)   AS expired_leases,
+        SUM(CASE WHEN l.status = 'active' THEN 1 ELSE 0 END)     AS active_leases,
+        SUM(CASE WHEN l.status = 'expired' THEN 1 ELSE 0 END)    AS expired_leases,
         SUM(CASE WHEN l.status = 'terminated' THEN 1 ELSE 0 END) AS terminated_leases,
         ISNULL(AVG(l.monthly_rent), 0)          AS avg_monthly_rent,
 
@@ -189,8 +172,8 @@ SELECT
     property_type,
     owner_name,
     service_type,
-    CAST(management_fee_percent * 100 AS DECIMAL(5,2)) AS management_fee_pct,
-    CAST(financing_percent * 100 AS DECIMAL(5,2))      AS financing_pct,
+    CAST(management_fee_percent * 100 AS DECIMAL(10,2)) AS management_fee_pct,
+    CAST(financing_percent * 100 AS DECIMAL(10,2))      AS financing_pct,
     contract_days,
     contract_status,
 
@@ -198,27 +181,30 @@ SELECT
     total_leases,
     active_leases,
     expired_leases,
-    CAST(avg_monthly_rent AS DECIMAL(12,2))     AS avg_monthly_rent_egp,
+    CAST(avg_monthly_rent AS DECIMAL(15,2))     AS avg_monthly_rent_egp,
 
     -- Rent payment metrics
     total_rent_payments,
     paid_payments,
     overdue_payments,
-    CAST(total_rent_collected AS DECIMAL(15,2)) AS total_rent_collected_egp,
+    CAST(total_rent_collected AS DECIMAL(18,2)) AS total_rent_collected_egp,
 
-    -- Occupancy rate
+    -- Occupancy rate (0-100%)
     CAST(
         CASE WHEN total_leases = 0 THEN 0
              ELSE 100.0 * active_leases / total_leases
-        END AS DECIMAL(5,2)
+        END AS DECIMAL(10,2)
     ) AS occupancy_rate_pct,
 
-    -- On-time payment rate
+    -- On-time payment rate (0-100%)
     CAST(
         CASE WHEN total_rent_payments = 0 THEN 0
              ELSE 100.0 * paid_payments / total_rent_payments
-        END AS DECIMAL(5,2)
+        END AS DECIMAL(10,2)
     ) AS on_time_payment_pct,
+
+    -- Average days late (for late payers only)
+    CAST(avg_days_late AS DECIMAL(10,2))        AS avg_days_late,
 
     -- Performance tier
     CASE
@@ -238,13 +224,11 @@ ORDER BY
     CASE WHEN total_leases = 0 THEN 1 ELSE 0 END,
     occupancy_rate_pct DESC,
     total_rent_collected_egp DESC;
+GO
 
 -- PART 2: SUMMARY BY CITY AND SERVICE TYPE
--- Rolls up contract-level data to identify high-performing
--- geographies and service types.
---
--- Aggregation is weighted by number of contracts and leases
--- to avoid small-sample bias.
+-- Aggregate contract performance at the city × service level.
+-- Weighted by lease and payment counts to avoid small-sample bias.
 
 SELECT
     p.city,
@@ -259,7 +243,7 @@ SELECT
         CASE WHEN COUNT(DISTINCT l.lease_id) = 0 THEN 0
              ELSE 100.0 * SUM(CASE WHEN l.status = 'active' THEN 1 ELSE 0 END)
                         / COUNT(DISTINCT l.lease_id)
-        END AS DECIMAL(5,2)
+        END AS DECIMAL(10,2)
     ) AS occupancy_rate_pct,
 
     -- Weighted on-time payment rate
@@ -267,18 +251,18 @@ SELECT
         CASE WHEN COUNT(rp.rent_payment_id) = 0 THEN 0
              ELSE 100.0 * SUM(CASE WHEN rp.status = 'paid' THEN 1 ELSE 0 END)
                         / COUNT(rp.rent_payment_id)
-        END AS DECIMAL(5,2)
+        END AS DECIMAL(10,2)
     ) AS on_time_payment_pct,
 
     -- Financial metrics
-    CAST(AVG(l.monthly_rent) AS DECIMAL(12,2))  AS avg_monthly_rent_egp,
-    CAST(SUM(CASE WHEN rp.status = 'paid'
-                  THEN rp.amount ELSE 0 END) AS DECIMAL(15,2)) AS total_rent_collected_egp,
+    CAST(ISNULL(AVG(l.monthly_rent), 0) AS DECIMAL(15,2))  AS avg_monthly_rent_egp,
+    CAST(ISNULL(SUM(CASE WHEN rp.status = 'paid'
+                        THEN rp.amount ELSE 0 END), 0) AS DECIMAL(18,2)) AS total_rent_collected_egp,
 
     -- Estimated Nawy revenue (management fee portion)
-    CAST(SUM(CASE WHEN rp.status = 'paid'
-                  THEN rp.amount * mc.management_fee_percent
-                  ELSE 0 END) AS DECIMAL(12,2)) AS estimated_nawy_revenue_egp
+    CAST(ISNULL(SUM(CASE WHEN rp.status = 'paid'
+                        THEN rp.amount * mc.management_fee_percent
+                        ELSE 0 END), 0) AS DECIMAL(18,2)) AS estimated_nawy_revenue_egp
 
 FROM nawy.MANAGEMENT_CONTRACT mc
 INNER JOIN nawy.PROPERTY p
@@ -291,7 +275,7 @@ WHERE mc.status IN ('active', 'expired', 'terminated')
 GROUP BY p.city, mc.service_type
 HAVING COUNT(DISTINCT mc.contract_id) >= 3
 ORDER BY occupancy_rate_pct DESC, total_rent_collected_egp DESC;
-```
+GO
 
 ---
 
