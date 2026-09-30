@@ -80,9 +80,7 @@ Each metric has:
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 10: Executive KPIs Dashboard
--- ============================================================
 -- Business Question:
 --   What is the single-screen, board-ready summary of Nawy's
 --   performance across users, properties, transactions, and
@@ -99,19 +97,13 @@ Each metric has:
 --   Single result set with ~50 KPIs, grouped by category,
 --   each with value, formatted display, and timestamp.
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- EXECUTIVE KPI DASHBOARD
--- ============================================================
 -- Produces one row per KPI, organized by category.
 -- Designed to feed a Tableau/Power BI "scorecard" visual.
--- ============================================================
 
 DECLARE @as_of_date DATETIMEOFFSET(7) = SYSDATETIMEOFFSET();
 
@@ -122,9 +114,7 @@ SELECT
     formatted_value,
     @as_of_date AS as_of_date
 FROM (
-    -- ============================================================
     -- 1. USER METRICS
-    -- ============================================================
     SELECT
         1 AS sort_order,
         '1. Users' AS category,
@@ -152,9 +142,7 @@ FROM (
         CAST(COUNT(*) AS NVARCHAR(50)) + ' tenants'
     FROM nawy.TENANT WHERE verification_status = 'verified'
 
-    -- ============================================================
     -- 2. PROPERTY METRICS
-    -- ============================================================
     UNION ALL
     SELECT 2, '2. Properties', 'Total Listings',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -191,9 +179,7 @@ FROM (
         CAST(COUNT(*) AS NVARCHAR(50)) + ' developers'
     FROM nawy.DEVELOPER
 
-    -- ============================================================
     -- 3. SALES PIPELINE
-    -- ============================================================
     UNION ALL
     SELECT 3, '3. Sales Pipeline', 'Total Leads',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -243,9 +229,7 @@ FROM (
         CAST(CAST(ISNULL(SUM(commission_amount), 0) / 1000000.0 AS DECIMAL(18,2)) AS NVARCHAR(50)) + 'M EGP'
     FROM nawy.COMMISSION WHERE status = 'paid'
 
-    -- ============================================================
     -- 4. NAWY NOW (MORTGAGE)
-    -- ============================================================
     UNION ALL
     SELECT 4, '4. Nawy Now', 'Mortgage Applications',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -289,9 +273,7 @@ FROM (
             END AS DECIMAL(5,2)) AS NVARCHAR(10)) + '%'
     FROM nawy.MORTGAGE_PAYMENT WHERE status = 'overdue'
 
-    -- ============================================================
     -- 5. NAWY SHARES (FRACTIONAL INVESTMENT)
-    -- ============================================================
     UNION ALL
     SELECT 5, '5. Nawy Shares', 'Total Offerings',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -344,9 +326,7 @@ FROM (
     INNER JOIN nawy.SHARE_INVESTMENT si ON se.investment_id = si.investment_id
     WHERE se.status = 'completed'
 
-    -- ============================================================
     -- 6. NAWY UNLOCKED (PROPERTY MANAGEMENT)
-    -- ============================================================
     UNION ALL
     SELECT 6, '6. Nawy Unlocked', 'Management Contracts',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -396,9 +376,7 @@ FROM (
         CAST(COUNT(*) AS NVARCHAR(50)) + ' projects'
     FROM nawy.FINISHING_PROJECT
 
-    -- ============================================================
     -- 7. COMPLIANCE
-    -- ============================================================
     UNION ALL
     SELECT 7, '7. Compliance', 'Total Escrow Accounts',
         CAST(COUNT(*) AS DECIMAL(18,2)),
@@ -417,9 +395,7 @@ FROM (
         CAST(CAST(ISNULL(SUM(deposit_amount), 0) / 1000000.0 AS DECIMAL(18,2)) AS NVARCHAR(50)) + 'M EGP'
     FROM nawy.ESCROW_ACCOUNT WHERE status = 'active'
 
-    -- ============================================================
     -- 8. REVENUE BY BUSINESS LINE
-    -- ============================================================
     UNION ALL
     SELECT 8, '8. Revenue', 'Nawy Partners Revenue',
         CAST(ISNULL(SUM(commission_amount), 0) AS DECIMAL(18,2)),
