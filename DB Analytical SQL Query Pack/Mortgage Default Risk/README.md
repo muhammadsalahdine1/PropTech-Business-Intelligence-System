@@ -67,9 +67,7 @@ This query provides the data foundation for those reports.
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 3: Mortgage Default Risk Analysis
--- ============================================================
 -- Business Question:
 --   What is the mortgage default rate on Nawy Now, and which
 --   borrower segments or property types carry the highest risk?
@@ -86,14 +84,11 @@ This query provides the data foundation for those reports.
 --
 -- Author: <Your Name>
 -- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- PART 1: PER-APPLICATION RISK SCORING
--- ============================================================
 -- For each active mortgage (approved or disbursed), we compute:
 --   - Borrower and property details
 --   - Payment history (paid, overdue, pending)
@@ -104,7 +99,6 @@ GO
 --   Medium Risk:   1-2 overdue payments (watch list)
 --   Fully Current: all installments paid on time
 --   Low Risk:      has pending future payments only
--- ============================================================
 
 WITH mortgage_risk_scored AS (
     SELECT
@@ -202,12 +196,9 @@ SELECT
 FROM mortgage_risk_scored
 ORDER BY overdue_count DESC, payment_completion_pct ASC;
 
--- ============================================================
 -- PART 2: DEFAULT RATE BY PROPERTY TYPE
--- ============================================================
 -- Aggregated view of risk distribution across property types.
 -- This drives underwriting policy decisions.
--- ============================================================
 
 SELECT
     property_type,
