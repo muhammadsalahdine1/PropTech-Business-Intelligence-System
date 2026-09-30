@@ -79,9 +79,7 @@ Properties in the same compound often show similar performance patterns. This qu
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 8: Property-Level Profitability
--- ============================================================
 -- Business Question:
 --   What is the total revenue each property generates across
 --   all Nawy business lines, and which assets deliver the
@@ -99,16 +97,12 @@ Properties in the same compound often show similar performance patterns. This qu
 --   Part 2: Summary by city and property type
 --   Part 3: Top compounds and developers
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
+
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- PART 1: PER-PROPERTY REVENUE BREAKDOWN
--- ============================================================
 -- For each property, compute revenue from five sources:
 --   1. Broker commission (Nawy Partners)
 --   2. Mortgage interest (Nawy Now)
@@ -118,7 +112,6 @@ GO
 --
 -- Also compute revenue as % of listing price to normalize
 -- across property size and price range.
--- ============================================================
 
 WITH property_revenue AS (
     SELECT
@@ -266,12 +259,9 @@ FROM property_revenue
 ORDER BY total_revenue_egp DESC;
 GO
 
--- ============================================================
 -- PART 2: SUMMARY BY CITY AND PROPERTY TYPE
--- ============================================================
 -- Aggregate property-level profitability to identify the best
 -- performing segments.
--- ============================================================
 
 WITH property_revenue AS (
     SELECT
@@ -324,12 +314,9 @@ HAVING COUNT(*) >= 3
 ORDER BY total_revenue_egp DESC;
 GO
 
--- ============================================================
 -- PART 3: TOP COMPOUNDS AND DEVELOPERS
--- ============================================================
 -- Identify which compounds and developers generate the most
 -- revenue for Nawy — informs exclusive partnerships.
--- ============================================================
 
 WITH property_revenue AS (
     SELECT
