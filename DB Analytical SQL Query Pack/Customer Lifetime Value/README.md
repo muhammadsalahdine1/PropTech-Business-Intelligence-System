@@ -93,25 +93,13 @@ USE NawyProptechDB;
 GO
 
 -- PART 1: PER-USER REVENUE BREAKDOWN
--- For each user, we compute revenue from four business lines:
+-- For each user, compute revenue from four business lines:
+--   1. Nawy Partners  → commission from deals as buyer
+--   2. Nawy Now       → mortgage interest revenue
+--   3. Nawy Shares    → exit fee revenue
+--   4. Nawy Unlocked  → management fee revenue
 --
--- 1. Nawy Partners:
---    Commission earned by the platform when the user buys
---    through a broker. Approximated by commission_amount
---    on completed deals where the user was the buyer.
---
--- 2. Nawy Now:
---    Interest revenue over the loan term. Approximation:
---    loan_amount × interest_rate (single year).
---
--- 3. Nawy Shares:
---    Exit fee revenue when the user exits an investment.
---    Formula: total_sale_value × exit_fee_percent.
---
--- 4. Nawy Unlocked:
---    Management fee revenue from rentals. Formula:
---    rent_paid × management_fee_percent, where user is the
---    property owner.
+-- Users with zero revenue across all lines are excluded.
 
 WITH user_revenue AS (
     SELECT
@@ -192,7 +180,7 @@ SELECT
         CASE WHEN unlocked_revenue > 0 THEN 1 ELSE 0 END
     ) AS business_lines_engaged,
 
-    -- CLV tier
+    -- CLV tier classification
     CASE
         WHEN (partner_revenue + now_revenue + shares_revenue + unlocked_revenue) >= 1000000
             THEN 'VIP'
@@ -206,10 +194,11 @@ SELECT
 FROM user_revenue
 WHERE (partner_revenue + now_revenue + shares_revenue + unlocked_revenue) > 0
 ORDER BY total_clv_egp DESC;
+GO
 
 -- PART 2: SUMMARY BY CLV TIER
--- Rolls up per-user CLV into segment-level statistics to
--- support strategic decisions on retention and acquisition.
+-- Rolls up per-user CLV into segment-level statistics.
+-- Uses a CTE to compute tier first, then aggregate cleanly.
 
 WITH user_clv AS (
     SELECT
@@ -239,15 +228,23 @@ WITH user_clv AS (
             WHERE mc.owner_user_id = u.user_id AND rp.status = 'paid'
         ), 0) AS total_clv
     FROM nawy.[USER] u
+),
+user_with_tier AS (
+    SELECT
+        user_id,
+        total_clv,
+        CASE
+            WHEN total_clv >= 1000000 THEN 'VIP'
+            WHEN total_clv >= 100000  THEN 'High Value'
+            WHEN total_clv >= 10000   THEN 'Standard'
+            WHEN total_clv > 0        THEN 'Low Value'
+            ELSE 'No Revenue'
+        END AS clv_tier
+    FROM user_clv
 )
+
 SELECT
-    CASE
-        WHEN total_clv >= 1000000 THEN 'VIP'
-        WHEN total_clv >= 100000  THEN 'High Value'
-        WHEN total_clv >= 10000   THEN 'Standard'
-        WHEN total_clv > 0        THEN 'Low Value'
-        ELSE 'No Revenue'
-    END AS clv_tier,
+    clv_tier,
     COUNT(*)                                    AS user_count,
     CAST(
         100.0 * COUNT(*) / SUM(COUNT(*)) OVER () AS DECIMAL(10,2)
@@ -259,21 +256,14 @@ SELECT
     CAST(AVG(total_clv) AS DECIMAL(18,2))       AS avg_clv_egp,
     CAST(MIN(total_clv) AS DECIMAL(18,2))       AS min_clv_egp,
     CAST(MAX(total_clv) AS DECIMAL(18,2))       AS max_clv_egp
-FROM user_clv
-GROUP BY
-    CASE
-        WHEN total_clv >= 1000000 THEN 'VIP'
-        WHEN total_clv >= 100000  THEN 'High Value'
-        WHEN total_clv >= 10000   THEN 'Standard'
-        WHEN total_clv > 0        THEN 'Low Value'
-        ELSE 'No Revenue'
-    END
+FROM user_with_tier
+GROUP BY clv_tier
 ORDER BY
-    CASE
-        WHEN total_clv >= 1000000 THEN 1
-        WHEN total_clv >= 100000  THEN 2
-        WHEN total_clv >= 10000   THEN 3
-        WHEN total_clv > 0        THEN 4
+    CASE clv_tier
+        WHEN 'VIP'        THEN 1
+        WHEN 'High Value' THEN 2
+        WHEN 'Standard'   THEN 3
+        WHEN 'Low Value'  THEN 4
         ELSE 5
     END;
 GO
