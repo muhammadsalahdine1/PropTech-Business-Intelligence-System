@@ -54,9 +54,7 @@ Nawy's profitability depends on identifying **high-appreciation markets before c
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 1: Market Pricing Trends (2021–2026)
--- ============================================================
 -- Business Question:
 --   How are property prices trending by city and property type
 --   over the last 5 years, and which segments are appreciating
@@ -74,14 +72,11 @@ Nawy's profitability depends on identifying **high-appreciation markets before c
 --
 -- Author: <Your Name>
 -- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- STEP 1: Aggregate yearly pricing metrics
--- ============================================================
 -- For each year, city, property type, and listing type, we
 -- compute:
 --   - Number of listings (volume indicator)
@@ -93,7 +88,6 @@ GO
 --   - area_sqm > 0 (avoids divide-by-zero)
 --   - price > 0 (avoids invalid listings)
 --   - created_at >= 2021 (5-year window)
--- ============================================================
 
 WITH yearly_pricing AS (
     SELECT
@@ -116,13 +110,10 @@ WITH yearly_pricing AS (
         p.listing_type
 ),
 
--- ============================================================
 -- STEP 2: Calculate year-over-year appreciation
--- ============================================================
 -- LAG() retrieves the previous year's avg_price_per_sqm for
 -- the same city/type/listing combination, enabling YoY
 -- growth calculation.
--- ============================================================
 
 yoy_growth AS (
     SELECT
@@ -134,13 +125,10 @@ yoy_growth AS (
     FROM yearly_pricing yp
 )
 
--- ============================================================
 -- STEP 3: Final output with YoY percentage
--- ============================================================
 -- YoY appreciation formula:
 --   (current - previous) / previous × 100
 -- NULL for the first year (no previous data).
--- ============================================================
 
 SELECT
     listing_year,
