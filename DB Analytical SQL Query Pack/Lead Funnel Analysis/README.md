@@ -85,9 +85,7 @@ Leads progress through **6 stages**:
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 9: Lead Funnel Analysis
--- ============================================================
 -- Business Question:
 --   How efficiently does Nawy convert leads to deals, where
 --   do prospects drop off in the funnel, and which lead
@@ -105,16 +103,11 @@ Leads progress through **6 stages**:
 --   Part 3: Performance by assigned broker
 --   Part 4: Funnel velocity (time in each stage)
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- PART 1: FUNNEL STAGE METRICS
--- ============================================================
 -- Compute total leads reaching each stage, plus end-to-end
 -- and stage-to-stage conversion rates.
 --
@@ -122,7 +115,6 @@ GO
 -- count leads that reached each stage as those currently IN
 -- that stage OR any stage AFTER it (funnel progression
 -- assumes leads move forward).
--- ============================================================
 
 WITH funnel_stages AS (
     SELECT
@@ -205,12 +197,9 @@ SELECT
 FROM funnel_stages;
 GO
 
--- ============================================================
 -- PART 2: LEAD SOURCE PERFORMANCE
--- ============================================================
 -- Which acquisition channels convert best and fastest?
 -- This directly informs marketing budget allocation.
--- ============================================================
 
 SELECT
     ISNULL(source, 'unknown')                       AS lead_source,
@@ -248,12 +237,9 @@ GROUP BY source
 ORDER BY conversion_pct DESC, total_leads DESC;
 GO
 
--- ============================================================
 -- PART 3: BROKER PERFORMANCE IN FUNNEL
--- ============================================================
 -- Does having an assigned broker improve conversion?
 -- This is the single most actionable metric for sales ops.
--- ============================================================
 
 WITH broker_attribution AS (
     SELECT
@@ -289,12 +275,9 @@ FROM broker_attribution
 ORDER BY conversion_pct DESC;
 GO
 
--- ============================================================
 -- PART 4: TOP BROKERS IN THE FUNNEL
--- ============================================================
 -- Which specific brokers convert best? Ranked by conversion
 -- rate (with min volume threshold to avoid small-sample bias).
--- ============================================================
 
 SELECT TOP 20
     b.broker_id,
@@ -338,12 +321,9 @@ HAVING COUNT(l.lead_id) >= 5
 ORDER BY conversion_pct DESC, total_leads DESC;
 GO
 
--- ============================================================
 -- PART 5: FUNNEL VELOCITY (TIME ANALYSIS)
--- ============================================================
 -- How long does it take to move through each stage? This
 -- reveals bottlenecks in the sales process.
--- ============================================================
 
 SELECT
     'Days to close (won leads)' AS metric,
