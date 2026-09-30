@@ -82,8 +82,7 @@ This query provides the data foundation for those reports.
 -- Output:
 --   Per-application risk metrics plus summary by property type.
 --
--- Author: <Your Name>
--- Date:   <Date>
+
 
 USE NawyProptechDB;
 GO
