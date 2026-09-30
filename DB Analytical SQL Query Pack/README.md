@@ -1,6 +1,6 @@
 # Analytical SQL Queries
 
-> **10 production-grade queries answering real business questions across Nawy's five business lines**
+> **10 queries answering real business questions across Nawy's five business lines**
 >
 > ## 🎯 Overview
 
