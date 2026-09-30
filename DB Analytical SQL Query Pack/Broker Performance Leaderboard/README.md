@@ -65,9 +65,7 @@ Understanding broker performance directly impacts Nawy's ability to grow this si
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 2: Broker Performance Leaderboard
--- ============================================================
 -- Business Question:
 --   Which brokers are the top performers on Nawy Partners,
 --   and what distinguishes them from the rest?
@@ -82,16 +80,11 @@ Understanding broker performance directly impacts Nawy's ability to grow this si
 --   Ranked broker list with KPIs, conversion rates, and
 --   performance tier classification.
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- STEP 1: Aggregate broker KPIs
--- ============================================================
 -- For each active broker, we compute:
 --   - Lead metrics (total, won, lost)
 --   - Deal metrics (count, GMV, average size)
@@ -100,7 +93,6 @@ GO
 --
 -- We use LEFT JOINs because not all brokers have leads/deals
 -- (new brokers may have zero activity yet).
--- ============================================================
 
 WITH broker_kpis AS (
     SELECT
@@ -153,9 +145,7 @@ WITH broker_kpis AS (
         b.joined_at
 )
 
--- ============================================================
 -- STEP 2: Rank brokers and classify performance tier
--- ============================================================
 -- ROW_NUMBER() assigns a rank based on total commission.
 -- CASE statement classifies each broker into a tier:
 --   Platinum: > 1,000,000 EGP commission
@@ -163,7 +153,6 @@ WITH broker_kpis AS (
 --   Silver:   > 100,000 EGP
 --   Bronze:   > 10,000 EGP
 --   Rising:   < 10,000 EGP
--- ============================================================
 
 SELECT
     ROW_NUMBER() OVER (ORDER BY total_commission_earned DESC) AS rank,
