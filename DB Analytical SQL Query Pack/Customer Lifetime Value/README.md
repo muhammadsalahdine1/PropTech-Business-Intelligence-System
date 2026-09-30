@@ -71,9 +71,7 @@ Nawy operates **five complementary business lines** (Properties, Partners, Now, 
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 6: Customer Lifetime Value (CLV)
--- ============================================================
 -- Business Question:
 --   What is the total revenue each user generates across all
 --   Nawy business lines, and who are the highest-value
@@ -89,16 +87,12 @@ Nawy operates **five complementary business lines** (Properties, Partners, Now, 
 --   Part 1: Per-user revenue across all business lines
 --   Part 2: Summary by CLV tier
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
+
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- PART 1: PER-USER REVENUE BREAKDOWN
--- ============================================================
 -- For each user, we compute revenue from four business lines:
 --
 -- 1. Nawy Partners:
@@ -118,7 +112,6 @@ GO
 --    Management fee revenue from rentals. Formula:
 --    rent_paid × management_fee_percent, where user is the
 --    property owner.
--- ============================================================
 
 WITH user_revenue AS (
     SELECT
@@ -214,12 +207,9 @@ FROM user_revenue
 WHERE (partner_revenue + now_revenue + shares_revenue + unlocked_revenue) > 0
 ORDER BY total_clv_egp DESC;
 
--- ============================================================
 -- PART 2: SUMMARY BY CLV TIER
--- ============================================================
 -- Rolls up per-user CLV into segment-level statistics to
 -- support strategic decisions on retention and acquisition.
--- ============================================================
 
 WITH user_clv AS (
     SELECT
