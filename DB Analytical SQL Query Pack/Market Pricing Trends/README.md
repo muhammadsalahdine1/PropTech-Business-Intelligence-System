@@ -70,8 +70,6 @@ Nawy's profitability depends on identifying **high-appreciation markets before c
 --   Year-over-year price trends by city, property type, and
 --   listing type, including YoY appreciation percentages.
 --
--- Author: <Your Name>
--- Date:   <Date>
 
 USE NawyProptechDB;
 GO
