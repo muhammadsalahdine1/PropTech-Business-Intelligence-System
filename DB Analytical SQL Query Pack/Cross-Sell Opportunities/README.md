@@ -79,9 +79,7 @@ From analysis of user journeys, these sequences are most effective:
 ## 🔍 The Query
 
 ```sql
--- ============================================================
 -- Query 7: Cross-Sell Opportunity Identification
--- ============================================================
 -- Business Question:
 --   Which users engage with multiple Nawy business lines, and
 --   which single-line users are the best candidates for
@@ -98,20 +96,14 @@ From analysis of user journeys, these sequences are most effective:
 --   Part 2: Prioritized cross-sell targets with recommendations
 --   Part 3: Cross-sell pair analysis
 --
--- Author: <Your Name>
--- Date:   <Date>
--- ============================================================
 
 USE NawyProptechDB;
 GO
 
--- ============================================================
 -- PART 1: USER ENGAGEMENT SEGMENTATION
--- ============================================================
 -- Classify all users into engagement tiers based on how many
 -- business lines they've used. This provides the population
 -- distribution for cross-sell analysis.
--- ============================================================
 
 WITH user_engagement AS (
     SELECT
@@ -196,9 +188,7 @@ ORDER BY
     END;
 GO
 
--- ============================================================
 -- PART 2: PRIORITIZED CROSS-SELL TARGETS
--- ============================================================
 -- For each single-line user, identify the best next service
 -- based on their existing engagement and typical cross-sell
 -- patterns.
@@ -208,7 +198,6 @@ GO
 --   - Property sellers without management → Nawy Unlocked
 --   - Cash buyers → Nawy Now (mortgage for next purchase)
 --   - High-value buyers → Nawy Shares (fractional portfolio)
--- ============================================================
 
 SELECT TOP 100
     u.user_id,
@@ -281,12 +270,9 @@ ORDER BY
     u.created_at ASC;
 GO
 
--- ============================================================
 -- PART 3: CROSS-SELL PAIR ANALYSIS
--- ============================================================
 -- Which business line combinations occur most frequently?
 -- This reveals natural product affinities.
--- ============================================================
 
 WITH user_pairs AS (
     SELECT
