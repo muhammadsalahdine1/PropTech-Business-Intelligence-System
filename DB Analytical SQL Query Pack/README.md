@@ -26,22 +26,7 @@ This folder contains **10 analytical SQL queries** that answer the most importan
 
 ---
 
-## 📋 Query Index
 
-| # | Query | Domain | Business Question | Complexity |
-|---|-------|--------|-------------------|------------|
-| 1 | [Market Pricing Trends](./01_market_pricing_trends.md) | Property | Which property segments are appreciating fastest? | Intermediate |
-| 2 | [Broker Performance](./02_broker_performance.md) | Sales | Who are the top-performing brokers? | Intermediate |
-| 3 | [Mortgage Default Risk](./03_mortgage_default_risk.md) | Nawy Now | What's the mortgage default rate by segment? | Advanced |
-| 4 | [Shares ROI Analysis](./04_shares_roi_analysis.md) | Nawy Shares | Which offerings deliver the best investor returns? | Advanced |
-| 5 | [Occupancy Analysis](./05_occupancy_analysis.md) | Nawy Unlocked | What's the occupancy rate and rental yield? | Advanced |
-| 6 | [Customer Lifetime Value](./06_customer_lifetime_value.md) | Cross-Business | Who are the highest-value customers? | Advanced |
-| 7 | [Cross-Sell Opportunities](./07_cross_sell_opportunities.md) | Growth | Which users should we target for cross-sell? | Intermediate |
-| 8 | [Property Profitability](./08_property_profitability.md) | Asset Mgmt | Which properties generate the most revenue? | Advanced |
-| 9 | [Lead Funnel Analysis](./09_lead_funnel_analysis.md) | Sales Ops | Where do leads drop off in the funnel? | Advanced |
-| 10 | [Executive KPIs](./10_executive_kpis.md) | Executive | What's the board-level performance summary? | Advanced |
-
----
 
 ## 💼 Business Value Map
 
