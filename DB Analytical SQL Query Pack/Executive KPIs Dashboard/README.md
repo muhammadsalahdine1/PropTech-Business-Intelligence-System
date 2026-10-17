@@ -4,16 +4,6 @@
 
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
 
 
 
@@ -21,61 +11,6 @@
 
 > **What is the single-screen, board-ready summary of Nawy's performance across users, properties, transactions, and all five business lines?**
 
----
-
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Every quarter, Nawy's executive team and board need a **single, trusted view** of platform performance. This query produces a **KPI dashboard** that consolidates:
-
-1. **User Growth** — Registration, activation, verification
-2. **Property Inventory** — Active listings, sold, rented
-3. **Sales Pipeline** — Leads, deals, GMV
-4. **Nawy Now** — Mortgage applications, portfolio health
-5. **Nawy Shares** — Offerings, investments, exits
-6. **Nawy Unlocked** — Contracts, occupancy, rent collected
-7. **Compliance** — Escrow held, active accounts
-8. **Revenue** — Total revenue by business line
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **CEO / CFO** | Board reporting |
-| **Executive Team** | Weekly leadership review |
-| **Investor Relations** | Investor update decks |
-| **Strategy** | Business unit comparison |
-| **Finance** | Monthly close reporting |
-
-### What "Good" Looks Like
-
-| KPI | Benchmark | Elite |
-|-----|-----------|-------|
-| **GMV (annual)** | > 1B EGP | > 2B EGP |
-| **Active listings** | > 400 | > 700 |
-| **Multi-line users** | > 25% | > 40% |
-| **Portfolio default rate** | < 5% | < 3% |
-| **Avg Shares ROI** | > 30% | > 60% |
-| **Occupancy rate** | > 80% | > 90% |
-
-### Design Philosophy
-
-This query is the **opposite of Query 1–9**. Those queries are deep-dives into specific business problems. This query is a **wide snapshot** — one row per metric, ready for a BI dashboard.
-
-**Structure**: A `UNION ALL` of ~50 KPIs organized into **8 categories**:
-
-- Users, Properties, Sales, Nawy Now, Nawy Shares, Nawy Unlocked, Compliance, Revenue
-
-Each metric has:
-
-- `category` — grouping
-- `kpi_name` — human-readable label
-- `kpi_value` — the number
-- `formatted_value` — with units (EGP, %, count)
-- `as_of_date` — timestamp
-
----
 
 ## 🔍 The Query
 
