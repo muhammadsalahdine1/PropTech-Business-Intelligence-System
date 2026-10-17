@@ -4,16 +4,6 @@
 
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
 
 
 
@@ -23,50 +13,6 @@
 
 ---
 
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Nawy operates **five complementary business lines** (Properties, Partners, Now, Shares, Unlocked). A user can engage with any combination of them over their lifetime. Understanding **Customer Lifetime Value (CLV)** enables:
-
-1. **VIP Identification** — Top 5% of users often generate 40–60% of revenue
-2. **Marketing ROI** — Compare acquisition cost vs. lifetime value per segment
-3. **Cross-Sell Strategy** — Target single-line users with high CLV potential
-4. **Retention Investment** — Justify account managers for high-CLV segments
-5. **Investor Story** — CLV growth demonstrates platform stickiness
-
-### Revenue Streams Modeled
-
-| Business Line | Revenue Component | Formula |
-|---------------|-------------------|---------|
-| **Nawy Partners** | Broker commission (as buyer) | `commission_amount` where buyer pays |
-| **Nawy Now** | Mortgage interest | `loan_amount × interest_rate` |
-| **Nawy Shares** | Exit fee revenue | `total_sale_value × exit_fee_percent` |
-| **Nawy Unlocked** | Management fees | `rent_paid × management_fee_percent` |
-| **Properties** | Listing fees (implicit) | Not modeled — free to list |
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Growth Team** | Segment users by CLV for targeted campaigns |
-| **VIP Relations** | Identify top-tier users for white-glove service |
-| **Investor Relations** | Demonstrate revenue per user to investors |
-| **Marketing** | Allocate acquisition budget by expected CLV |
-| **Product** | Prioritize features for high-CLV segments |
-
-### What "Good" Looks Like
-
-| CLV Tier | Total Revenue | Population Share | Revenue Share |
-|----------|---------------|------------------|---------------|
-| **VIP** | > 1,000,000 EGP | ~2% | ~40% |
-| **High Value** | 100K–1M EGP | ~8% | ~35% |
-| **Standard** | 10K–100K EGP | ~25% | ~20% |
-| **Low Value** | < 10K EGP | ~65% | ~5% |
-
-**Pareto principle check**: If top 10% of users generate less than 70% of revenue, cross-sell programs need improvement.
-
----
 
 ## 🔍 The Query
 
