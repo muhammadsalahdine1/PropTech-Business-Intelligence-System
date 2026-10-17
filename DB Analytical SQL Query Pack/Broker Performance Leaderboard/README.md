@@ -9,22 +9,6 @@
 
 ---
 
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Nawy Partners pays approximately **2.5% commission** to the 45 active MSME brokers on its platform. With over **3,000 brokerages** registered and only a fraction actively closing deals, identifying and retaining top performers is critical for:
-
-1. **Revenue Growth** 
-2. **Inventory Allocation**
-3. **Training & Enablement**
-4. **Compensation Strategy**
-
-
-
-
-
----
 
 ## 🔍 The Query
 
