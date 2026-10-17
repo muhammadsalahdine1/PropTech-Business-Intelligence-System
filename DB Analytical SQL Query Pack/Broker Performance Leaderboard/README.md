@@ -2,17 +2,6 @@
 
 > **Analytical SQL Query for Nawy Proptech Platform**
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
 
 ## 🎯 Business Question
 
@@ -26,39 +15,14 @@
 
 Nawy Partners pays approximately **2.5% commission** to the 45 active MSME brokers on its platform. With over **3,000 brokerages** registered and only a fraction actively closing deals, identifying and retaining top performers is critical for:
 
-1. **Revenue Growth** — Top 20% of brokers often generate 80% of GMV (Pareto principle).
-2. **Inventory Allocation** — High-performing brokers deserve access to exclusive developer inventory.
-3. **Training & Enablement** — Understanding what top performers do differently lets Nawy replicate winning behaviors.
-4. **Compensation Strategy** — Commission tiers, bonuses, and incentives should reward the right behaviors.
+1. **Revenue Growth** 
+2. **Inventory Allocation**
+3. **Training & Enablement**
+4. **Compensation Strategy**
 
-### Who Uses This Query
 
-| Role | Purpose |
-|------|---------|
-| **Nawy Partners Team** | Rank brokers, allocate inventory, and set quotas |
-| **Executive Team** | Track platform-wide sales productivity |
-| **Broker Enablement** | Identify training opportunities |
-| **Finance** | Forecast commission payouts and cash flow |
 
-### What "Good" Looks Like
 
-| Metric | Benchmark | Elite |
-|--------|-----------|-------|
-| **Lead Conversion Rate** | 10–15% | > 20% |
-| **Average Deal Size** | 3–5M EGP | > 8M EGP |
-| **Deals per Month** | 1–2 | 4+ |
-| **Commission per Broker** | 500K EGP/year | > 1M EGP/year |
-
-### The Broker Economy on Nawy
-
-Nawy Partners operates as a **B2B marketplace for brokers**, offering:
-
-- Access to exclusive inventory from **150+ developers**
-- Fast commission payouts (typically 15–30 days vs. industry 90+ days)
-- Team management tools for agency brokers
-- Lead flow from Nawy's 1M+ monthly users
-
-Understanding broker performance directly impacts Nawy's ability to grow this side of the business.
 
 ---
 
