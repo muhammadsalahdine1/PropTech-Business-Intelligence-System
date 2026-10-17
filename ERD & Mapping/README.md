@@ -5,7 +5,6 @@
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-2019%2B-blue)
 ![Tables](https://img.shields.io/badge/tables-20-orange)
 ![Relationships](https://img.shields.io/badge/relationships-34-yellow)
-![Views](https://img.shields.io/badge/analytical%20views-23-purple)
 
 
 ## 🎯 Overview
