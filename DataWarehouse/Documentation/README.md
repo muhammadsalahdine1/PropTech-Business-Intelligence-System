@@ -2,20 +2,6 @@
 
 
 
-## 🎯 Introduction
-
-### What Is This Document?
-
-This is the **authoritative dimensional modeling reference** for the Nawy Proptech data warehouse. It documents:
-
-- Every dimension table (structure, grain, attributes)
-- Every fact table (grain, measures, dimensions)
-- The relationships between them (the bus matrix)
-- Design decisions and why they were made
-- Standards for extending the model
-
-
-
 
 ## 🔍 Query Examples
 
