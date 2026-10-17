@@ -3,77 +3,13 @@
 > **Analytical SQL Query for Nawy Proptech Platform**
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
-
-
 ## 🎯 Business Question
 
 > **What is the average occupancy rate across Nawy Unlocked properties, how does it vary by location and service type, and which segments deliver the highest rental yield?**
 
 ---
 
-## 💼 Business Context
 
-### Why This Matters to Nawy
-
-Nawy Unlocked converts idle Egyptian properties — estimated at **10 million units** — into income-generating assets. The service:
-
-1. **Finishes & furnishes** shell/semi-finished properties
-2. **Finances up to 50%** of finishing costs
-3. **Finds tenants** and manages leases
-4. **Collects rent** and handles renewals
-
-Revenue model:
-- **Management fee**: typically 10% of monthly rent
-- **Financing repayment**: recovered through rental income over time
-
-This query directly impacts three strategic decisions:
-
-1. **Which properties to acquire for management?** — Occupancy and yield patterns identify the best segments.
-2. **How to price management fees?** — Yield data informs fee structure.
-3. **How to market to owners?** — Real occupancy rates prove Nawy's value proposition.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Nawy Unlocked Operations** | Daily performance monitoring |
-| **Owner Relations** | Report to property owners |
-| **Investment Committee** | Select properties for management |
-| **Finance** | Forecast rental income and management fees |
-| **Marketing** | Validate "income-generating asset" claims |
-
-### What "Good" Looks Like
-
-| Metric | Benchmark | Elite |
-|--------|-----------|-------|
-| **Occupancy Rate** | 75–85% | > 90% |
-| **On-Time Payment Rate** | 85–92% | > 95% |
-| **Avg Monthly Rent** | 15K–25K EGP | > 35K EGP |
-| **Contract Retention** | 60% renewal | > 80% renewal |
-
-### The Nawy Unlocked Value Proposition
-
-Owners partner with Nawy Unlocked because they:
-
-- Can't manage a rental property remotely
-- Don't have time to find tenants
-- Want to convert an idle asset into cash flow
-- Need a trusted partner to handle maintenance
-
-Nawy's job is to maximize both **occupancy** (revenue for owners) and **on-time payments** (predictable cash flow for Nawy's fees).
-
----
 
 ## 🔍 The Query
 
