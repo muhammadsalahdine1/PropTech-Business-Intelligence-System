@@ -710,37 +710,3 @@ FROM nawy_dw.AggDailySales
 WHERE date >= '2026-01-01';
 ```
 
----
-
-## ⚡ Performance Strategy
-
-### Optimization Techniques
-
-| Technique | Applied To | Benefit |
-|-----------|-----------|---------|
-| **Clustered Columnstore** | Large facts | 10× compression, 5× speed |
-| **Partitioning** | Facts by year | Partition elimination |
-| **Materialized Aggregates** | Common queries | 100× speedup |
-| **Covering Indexes** | Dimension lookups | Index-only scans |
-| **Compression** | All tables | 50–70% storage savings |
-| **Statistics** | All tables | Better query plans |
-| **Resource Governor** | BI workloads | Workload isolation |
-
-### Query Performance Targets
-
-| Query Type | Target | Rationale |
-|-----------|--------|-----------|
-| Simple aggregation | < 1 sec | Common dashboards |
-| Multi-dim join | < 3 sec | Analytical queries |
-| YTD totals | < 2 sec | Executive dashboards |
-| Full-year trend | < 5 sec | Historical analysis |
-| CLV computation | < 10 sec | Complex user analytics |
-
-### Capacity Planning
-
-| Metric | Year 1 | Year 3 | Year 5 |
-|--------|--------|--------|--------|
-| Fact rows (total) | 500K | 2M | 5M |
-| DW size | 5 GB | 25 GB | 60 GB |
-| Storage cost | $25/mo | $125/mo | $300/mo |
-| Query load (daily) | 10K | 50K | 150K |
