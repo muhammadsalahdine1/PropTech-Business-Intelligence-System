@@ -4,77 +4,12 @@
 
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
-
-
 ## 🎯 Business Question
 
 > **Which users engage with multiple Nawy business lines, and which single-line users are the best candidates for cross-sell campaigns?**
 
 ---
 
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Cross-selling is Nawy's **single largest growth lever**. Query 6 showed that multi-line users generate significantly higher CLV than single-line users. This query answers three operational questions:
-
-1. **Who should we target next?** — Identify specific users ready for cross-sell
-2. **Which path works best?** — Which business line combinations are common?
-3. **What's the untapped opportunity?** — Quantify revenue left on the table
-
-### The Cross-Sell Value Matrix
-
-Based on Query 6 data, we observe these CLV multipliers:
-
-| Business Lines Engaged | Avg CLV | Multiplier vs. 1-line |
-|------------------------|---------|----------------------|
-| **1 line** | 45K EGP | 1.0× |
-| **2 lines** | 180K EGP | 4.0× |
-| **3 lines** | 620K EGP | 13.8× |
-| **4 lines** | 1,890K EGP | 42.0× |
-
-**Strategic implication**: Adding one additional business line to a user multiplies their CLV by **4×** on average.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Growth Team** | Weekly targeting lists for cross-sell campaigns |
-| **CRM Automation** | Trigger-based emails based on engagement gaps |
-| **Product Team** | Identify which services pair naturally |
-| **Executive Team** | Track cross-sell penetration rate |
-| **Investor Relations** | Show platform expansion revenue potential |
-
-### What "Good" Looks Like
-
-| Metric | Benchmark | Elite |
-|--------|-----------|-------|
-| **Cross-Sell Penetration** | > 25% | > 40% |
-| **Multi-Line Users** | > 30% | > 50% |
-| **Revenue from Cross-Sell** | > 60% | > 75% |
-| **Conversion Rate to 2nd Line** | > 15% | > 30% |
-
-### Common Cross-Sell Paths
-
-From analysis of user journeys, these sequences are most effective:
-
-1. **Buyer → Investor** — Property buyers often become fractional investors (Nawy Shares)
-2. **Seller → Landlord** — Sellers of primary properties become Nawy Unlocked clients
-3. **Buyer → Mortgage** — Cash buyers often qualify for Nawy Now financing on the next purchase
-4. **Investor → Broker** — Sophisticated investors become Nawy Partners brokers
-
----
 
 ## 🔍 The Query
 
