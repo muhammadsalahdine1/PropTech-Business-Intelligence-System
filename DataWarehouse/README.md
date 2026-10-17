@@ -5,59 +5,7 @@
 
 
 
-## 🧩 Dimensional Model
 
-### Complete Star Schema
-
-```mermaid
-erDiagram
-    DimDate ||--o{ FactDeal : "closed on"
-    DimDate ||--o{ FactLead : "created on"
-    DimDate ||--o{ FactMortgagePayment : "due on"
-    DimDate ||--o{ FactRentPayment : "due on"
-    DimDate ||--o{ FactShareInvestment : "invested on"
-    DimDate ||--o{ FactRevenue : "recognized on"
-    DimDate ||--o{ FactUserActivity : "activity date"
-
-    DimUser ||--o{ FactLead : "buyer"
-    DimUser ||--o{ FactDeal : "buyer"
-    DimUser ||--o{ FactMortgageApplication : "applicant"
-    DimUser ||--o{ FactShareInvestment : "investor"
-    DimUser ||--o{ FactManagementContract : "owner"
-    DimUser ||--o{ FactRentPayment : "receives"
-    DimUser ||--o{ FactUserActivity : "actor"
-
-    DimProperty ||--o{ FactPropertyListing : "listing"
-    DimProperty ||--o{ FactLead : "property of interest"
-    DimProperty ||--o{ FactDeal : "sold"
-    DimProperty ||--o{ FactMortgageApplication : "financed"
-    DimProperty ||--o{ FactShareOffering : "underlying"
-    DimProperty ||--o{ FactManagementContract : "managed"
-    DimProperty ||--o{ FactLease : "leased"
-    DimProperty ||--o{ FactRentPayment : "rented"
-
-    DimBroker ||--o{ FactLead : "handles"
-    DimBroker ||--o{ FactDeal : "closes"
-    DimBroker ||--o{ FactCommission : "earns"
-
-    DimDeveloper ||--o{ FactPropertyListing : "develops"
-    DimDeveloper ||--o{ FactShareOffering : "owns"
-
-    DimGeography ||--o{ FactPropertyListing : "located in"
-    DimGeography ||--o{ FactLead : "region of interest"
-
-    DimProduct ||--o{ FactRevenue : "revenue source"
-    DimProduct ||--o{ FactUserActivity : "activity type"
-
-    FactDeal ||--o| FactCommission : "generates"
-    FactMortgageApplication ||--o{ FactMortgagePayment : "has installments"
-    FactShareOffering ||--o{ FactShareInvestment : "receives"
-    FactShareInvestment ||--o| FactShareExit : "exits"
-    FactManagementContract ||--o{ FactLease : "administers"
-    FactLease ||--o{ FactRentPayment : "generates"
-```
-
----
 
 ## 📊 Fact Tables
 
