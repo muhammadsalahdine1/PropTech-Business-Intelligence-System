@@ -2,16 +2,6 @@
 
 > **Analytical SQL Query for Nawy Proptech Platform**
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
 
 ---
 
@@ -21,35 +11,6 @@
 
 ---
 
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Nawy's profitability depends on identifying **high-appreciation markets before competitors do**. This query serves three critical business functions:
-
-1. **Pricing Strategy** — Sales teams need current market rates per square meter to price listings competitively.
-2. **Nawy Shares Selection** — The investment committee uses historical appreciation to select properties for fractional offerings.
-3. **Developer Partnership Negotiation** — Nawy can negotiate better commission rates with developers whose projects appreciate consistently.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Pricing Analyst** | Benchmark listings against market rates |
-| **Nawy Shares Investment Committee** | Select high-growth properties for fractional offerings |
-| **Developer Relations** | Rank developers by asset appreciation |
-| **Executive Team** | Monthly market trend reporting |
-
-### What "Good" Looks Like
-
-| Appreciation | Classification | Action |
-|--------------|----------------|--------|
-| **> 20%/year** | Hot market | Prioritize inventory |
-| **10–20%/year** | Healthy market | Standard operations |
-| **5–10%/year** | Slow market | Reduce inventory exposure |
-| **< 5%/year** | Stagnant market | Focus on liquidity, not appreciation |
-
----
 
 ## 🔍 The Query
 
