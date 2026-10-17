@@ -3,19 +3,6 @@
 > **Analytical SQL Query for Nawy Proptech Platform**
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
-
-
 
 ## 🎯 Business Question
 
@@ -23,50 +10,7 @@
 
 ---
 
-## 💼 Business Context
 
-### Why This Matters to Nawy
-
-Nawy Shares is **Egypt's first FRA-regulated fractional real estate platform**, allowing investors to participate with as little as **5,000 EGP per month**. The platform has facilitated investments across **405+ units** and **16 developers**.
-
-This query answers three strategic questions:
-
-1. **Which offerings to select next?** — Historical ROI reveals which property types, cities, and developers consistently outperform.
-2. **How to market to investors?** — Real ROI figures validate Nawy Shares' claim of "highest return with no effort."
-3. **How to price new offerings?** — ROI patterns inform share pricing and exit conditions.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Nawy Shares Investment Committee** | Select properties for new offerings |
-| **Investor Relations** | Provide performance reports to investors |
-| **Marketing** | Validate ROI claims in campaigns |
-| **Developers** | Show developers how their projects perform on the platform |
-| **Product Team** | Refine exit conditions and fee structures |
-
-### What "Good" Looks Like
-
-| Avg ROI | Offering Quality | Action |
-|---------|------------------|--------|
-| **> 100%** | Exceptional | Feature prominently; replicate characteristics |
-| **50–100%** | Strong | Standard marketing |
-| **20–50%** | Healthy | Continue with similar properties |
-| **0–20%** | Weak | Review selection criteria |
-| **< 0%** | Loss | Exit immediately; analyze root cause |
-
-### Regulatory Context
-
-Under **FRA Resolution No. 125 of 2025**, Nawy Shares must:
-
-- Publish information memoranda for each offering
-- Report investor returns transparently
-- Maintain audit trails of all exits
-- Ensure exit conditions are honored (delivery OR ≥80% return)
-
-This query provides the performance data foundation for regulatory reporting.
-
----
 
 ## 🔍 The Query
 
