@@ -4,17 +4,6 @@
 
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
 
 
 ## 🎯 Business Question
@@ -23,58 +12,7 @@
 
 ---
 
-## 💼 Business Context
 
-### Why This Matters to Nawy
-
-Nawy's core competitive advantage is its **asset-centric model**. Unlike traditional brokerages that profit once per transaction, Nawy monetizes each property through **multiple revenue streams** across its five business lines. Understanding property-level profitability is critical for:
-
-1. **Portfolio Management** — Which properties to promote, which to deprioritize
-2. **Developer Partnerships** — Negotiate better terms for properties that perform well
-3. **Nawy Shares Selection** — Identify properties that generate high returns AND high fees
-4. **Investment Committee** — Justify acquisition of new inventory
-5. **Operations** — Allocate marketing budget by property ROI
-
-### The Multi-Revenue Model
-
-A single property can generate revenue from up to **five sources**:
-
-| Source | Business Line | Revenue Component |
-|--------|---------------|-------------------|
-| **1. Broker Commission** | Nawy Partners | 2.5% of sale price |
-| **2. Mortgage Interest** | Nawy Now | Loan × interest rate |
-| **3. Shares Exit Fee** | Nawy Shares | 2.5–5% of resale value |
-| **4. Management Fee** | Nawy Unlocked | 10% of monthly rent |
-| **5. Rent Financing** | Nawy Unlocked | Up to 50% of finishing costs |
-
-**Key insight**: A property that sells once through Nawy Partners generates ~2.5% of price. A property that ALSO has fractional investment, mortgage financing, and rental management can generate **15–25% of price** over its lifetime.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Asset Management Team** | Portfolio performance review |
-| **Nawy Shares Committee** | Property selection for fractional offerings |
-| **Developer Relations** | Rank developer performance |
-| **Marketing Team** | Allocate ad spend by property ROI |
-| **Executive Team** | Report on unit economics |
-| **Finance** | Asset-level P&L |
-
-### What "Good" Looks Like
-
-| Property Revenue | Classification | Action |
-|------------------|----------------|--------|
-| **> 20% of price** | Premium asset | Feature prominently; acquire more like it |
-| **10–20% of price** | Strong performer | Continue promoting |
-| **5–10% of price** | Standard | Monitor performance |
-| **2–5% of price** | Below average | Investigate bottleneck |
-| **< 2% of price** | Underperformer | Deprioritize or exit |
-
-### The Compound Effect
-
-Properties in the same compound often show similar performance patterns. This query enables **compound-level analysis** — helping Nawy prioritize exclusive partnerships with developers in high-performing communities.
-
----
 
 ## 🔍 The Query
 
