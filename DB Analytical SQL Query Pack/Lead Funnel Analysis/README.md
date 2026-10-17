@@ -5,17 +5,6 @@
 
 
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
 
 
 
@@ -25,62 +14,6 @@
 
 ---
 
-## 💼 Business Context
-
-### Why This Matters to Nawy
-
-Lead funnel optimization is Nawy's **most direct path to revenue growth**. A 1-percentage-point improvement in lead-to-deal conversion across 1,400 leads translates to **~14 additional deals per year** — worth **~50M EGP in GMV** and **~1.25M EGP in commissions**.
-
-This query answers five operational questions:
-
-1. **Where do leads drop off?** — Identifies the weakest stage
-2. **Which sources convert best?** — Guides marketing spend allocation
-3. **How fast is the funnel?** — Time-to-close impacts cash flow
-4. **Do brokers matter?** — Quantifies the broker-attribution effect
-5. **What's the geographic pattern?** — Where to invest in sales capacity
-
-### The Nawy Lead Funnel
-
-Leads progress through **6 stages**:
-
-| Stage | Description | Typical Duration |
-|-------|-------------|------------------|
-| **1. new** | Just submitted inquiry | 0–2 days |
-| **2. contacted** | Broker made first contact | 1–7 days |
-| **3. viewing** | Buyer toured the property | 3–14 days |
-| **4. negotiation** | Discussing price/terms | 7–30 days |
-| **5. closed_won** | Deal signed | 30–90 days |
-| **6. closed_lost** | Deal fell through | varies |
-
-**Industry benchmark** (real estate):
-
-- New → Contacted: 80–90%
-- Contacted → Viewing: 40–60%
-- Viewing → Negotiation: 30–50%
-- Negotiation → Closed Won: 50–70%
-- **End-to-end conversion**: 8–15%
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Sales Operations** | Weekly funnel review |
-| **Marketing** | Allocate budget by source ROI |
-| **Broker Enablement** | Coach underperformers |
-| **Executive Team** | Report on pipeline health |
-| **Product Team** | Improve lead capture UX |
-
-### What "Good" Looks Like
-
-| Metric | Benchmark | Elite |
-|--------|-----------|-------|
-| **Lead-to-Deal Conversion** | 10–15% | > 20% |
-| **Avg Days to Close** | 45–75 days | < 45 days |
-| **Contact Rate (New → Contacted)** | 85% | > 95% |
-| **Broker-Handled Conversion** | 18–25% | > 30% |
-| **Website Lead Conversion** | 8–12% | > 15% |
-
----
 
 ## 🔍 The Query
 
