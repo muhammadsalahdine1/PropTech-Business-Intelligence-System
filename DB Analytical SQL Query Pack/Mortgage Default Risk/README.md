@@ -2,18 +2,6 @@
 
 > **Analytical SQL Query for Nawy Proptech Platform**
 
-## 📖 Table of Contents
-
-- [Business Question](#-business-question)
-- [Business Context](#-business-context)
-- [The Query](#-the-query)
-- [Code Walkthrough](#-code-walkthrough)
-- [Expected Output](#-expected-output)
-- [Interpretation Guide](#-interpretation-guide)
-- [Analytical Extensions](#-analytical-extensions)
-- [Performance Notes](#-performance-notes)
-
-
 
 ## 🎯 Business Question
 
@@ -21,48 +9,7 @@
 
 ---
 
-## 💼 Business Context
 
-### Why This Matters to Nawy
-
-Nawy Now is a **FRA-licensed mortgage originator** (License No. 25, issued 2024) that holds mortgages on its balance sheet before securitizing them. Default risk directly impacts:
-
-1. **Portfolio Valuation** — Each defaulted loan costs Nawy 40–60% of the outstanding balance (after recovery).
-2. **Securitization Pricing** — Nawy has securitized EGP 443M in mortgages; higher default rates raise the cost of capital.
-3. **Capital Reserve Requirements** — Under FRA rules, Nawy must hold reserves proportional to portfolio risk.
-4. **Underwriting Policy** — Historical default patterns inform down payment minimums, interest rates, and approval criteria.
-
-### Who Uses This Query
-
-| Role | Purpose |
-|------|---------|
-| **Nawy Now Risk Team** | Monitor portfolio health daily |
-| **Securitization Partners** | Assess pool quality before purchase |
-| **Executive Team** | Board-level reporting on credit risk |
-| **Underwriting** | Adjust approval criteria based on segment performance |
-| **Collections** | Prioritize high-risk loans for intervention |
-
-### What "Good" Looks Like
-
-| Default Rate | Portfolio Health | Action |
-|--------------|------------------|--------|
-| **< 3%** | Excellent | Maintain current underwriting |
-| **3–5%** | Healthy | Standard monitoring |
-| **5–8%** | Elevated | Review underwriting criteria |
-| **8–12%** | High | Tighten down payment requirements |
-| **> 12%** | Critical | Immediate policy overhaul |
-
-### Regulatory Context
-
-Under **FRA Resolution No. 125 of 2025**, Nawy Now must:
-
-- Classify each loan by risk category (performing, watch-list, substandard, doubtful, loss)
-- Report default rates monthly
-- Maintain minimum capital reserves based on risk-weighted assets
-
-This query provides the data foundation for those reports.
-
----
 
 ## 🔍 The Query
 
