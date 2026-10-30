@@ -4,7 +4,6 @@
 
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-2019%2B-blue)
 ![Data](https://img.shields.io/badge/Data-Nawy%20Shares-green)
-![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen)
 
 ---
 
