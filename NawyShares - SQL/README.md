@@ -1,30 +1,22 @@
 # 🏢 Developer Consistency Scorecard — Nawy Shares
 
-> **A data-driven SQL analysis to rank real estate developers by the consistency of returns on fractional investment offerings.**
+> **A SQL-based analytical tool that ranks real estate developers by the consistency of returns on Nawy Shares fractional investment offerings.**
+
+![SQL Server](https://img.shields.io/badge/SQL%20Server-2019%2B-blue)
+![Data](https://img.shields.io/badge/Data-Nawy%20Shares-green)
+![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen)
 
 ---
 
-## 📋 Table of Contents
 
-- [Overview](#-overview)
-- [Business Question](#-business-question)
-- [Data Sources](#-data-sources)
-- [Methodology](#-methodology)
-- [SQL Query](#-sql-query)
-- [Output Columns & Meaning](#-output-columns--meaning)
-- [How to Read the Results](#-how-to-read-the-results)
-- [Investor Decision Framework](#-investor-decision-framework)
-- [Worked Example](#-worked-example)
-
----
 
 ## 🎯 Overview
 
-This analysis answers a single, critical investor question:
+This analysis answers a single critical investor question:
 
 > **Which real estate developers have consistently delivered strong returns on Nawy Shares fractional offerings?**
 
-A single successful offering does not tell you much — it could be luck. What matters is **repeatable performance**. This query ranks every developer by their average return, penalises those with erratic results, and grades them from **A+ (Elite)** to **D (Underperformer)**.
+A single successful offering does not prove skill — it could be luck. What matters is **repeatable performance**. This query ranks every developer by their average return, penalizes erratic results, and grades them from **A+ (Elite)** to **D (Underperformer)**.
 
 **Output grain**: One row per developer.
 
@@ -37,7 +29,7 @@ A single successful offering does not tell you much — it could be luck. What m
 | **Question** | Which developers deliver consistent, strong ROI? |
 | **Audience** | Nawy Shares investment committee, individual investors |
 | **Decision** | Where to allocate capital in fractional offerings |
-| **Metric** | Average ROI, ROI volatility, win rate, market alpha |
+| **Key Metrics** | Average ROI, ROI volatility, win rate, market alpha |
 
 ---
 
@@ -60,15 +52,17 @@ A single successful offering does not tell you much — it could be luck. What m
 The query works in **three stages**:
 
 ### Stage 1 — Offering-Level ROI (`offering_roi` CTE)
+
 For each offering, calculate:
 - Number of exits (`exit_count`)
 - Average ROI (`avg_roi_pct`)
 - Average holding period (`avg_holding_days`)
 - Total profit generated (`total_profit_egp`)
 
-**Why**: Isolate property/offering behaviour before rolling up.
+**Why**: Isolate property/offering behaviour before rolling up to developer level.
 
 ### Stage 2 — Developer Aggregation (`developer_stats` CTE)
+
 Roll up all offerings by developer:
 - Number of offerings with exits (sample size)
 - Average ROI across offerings
@@ -77,14 +71,16 @@ Roll up all offerings by developer:
 - Count of offerings above 20% ROI
 - Win rate
 
-**Why**: This is the heart of the analysis. A developer with high average but huge swings is not the same as a consistent one.
+**Why**: The heart of the analysis. A developer with high average but huge swings is not the same as a consistent one.
 
 ### Stage 3 — Market Benchmark (`market_benchmark` CTE)
+
 Calculate the market average ROI across all offerings.
 
 **Why**: Enables **alpha** calculation — how much each developer beats or lags the overall market.
 
 ### Final SELECT
+
 Combine all stages and assign a reliability grade.
 
 ---
@@ -102,6 +98,7 @@ USE NawyProptechDB;
 GO
 
 WITH offering_roi AS (
+    -- STEP 1: Compute average ROI per offering
     SELECT
         so.offering_id,
         p.developer_id,
@@ -109,8 +106,10 @@ WITH offering_roi AS (
         p.city,
         p.property_type,
         COUNT(se.exit_id)                           AS exit_count,
+        -- ROI = profit / invested amount
         AVG(se.profit_loss * 100.0
             / NULLIF(si.total_amount, 0))           AS avg_roi_pct,
+        -- Holding days computed from dates
         AVG(CAST(DATEDIFF(DAY, si.investment_date, se.exit_date) AS FLOAT))
                                                     AS avg_holding_days,
         SUM(se.profit_loss)                         AS total_profit_egp
@@ -125,6 +124,7 @@ WITH offering_roi AS (
     GROUP BY so.offering_id, p.developer_id, p.title, p.city, p.property_type
 ),
 developer_stats AS (
+    -- STEP 2: Aggregate to developer level
     SELECT
         d.developer_id,
         d.name                                      AS developer_name,
@@ -144,6 +144,7 @@ developer_stats AS (
     HAVING COUNT(*) >= 2
 ),
 market_benchmark AS (
+    -- STEP 3: Market average for alpha calculation
     SELECT AVG(avg_roi_pct) AS market_avg_roi
     FROM offering_roi
 )
