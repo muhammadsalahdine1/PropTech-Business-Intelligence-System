@@ -92,13 +92,11 @@ Combine all stages and assign a reliability grade.
 ## 🧾 SQL Query
 
 ```sql
--- ============================================================
 -- Query: Developer Consistency Scorecard
--- ============================================================
 -- Purpose : Rank developers by ROI consistency
 -- Grain   : One row per developer
 -- Filters : Only developers with 2+ exited offerings
--- ============================================================
+
 
 USE NawyProptechDB;
 GO
