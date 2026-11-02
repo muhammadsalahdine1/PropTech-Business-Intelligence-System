@@ -2,15 +2,14 @@
 
 > **10 queries answering real business questions across Nawy's five business lines**
 >
-> ## 🎯 Overview
+> ##  Overview
 
 This folder contains **10 analytical SQL queries** that answer the most important business questions for a Nawy-style proptech platform. Each query:
 
-- **Targets a real business problem** — not academic exercises
-- **Includes full documentation** — business context, walkthrough, interpretation
-- **Uses the views and tables** from the main database schema
-- **Feeds directly into Tableau/Power BI** — no further SQL needed
-- **Provides actionable recommendations** — not just numbers
+- **Targets a real business problem**
+- **Includes full documentation**
+- **Uses the views and tables** 
+- **Feeds directly into Tableau/Power BI**
 
 ### Coverage
 
@@ -27,25 +26,6 @@ This folder contains **10 analytical SQL queries** that answer the most importan
 ---
 
 
-
-## 💼 Business Value Map
-
-Each query maps to a specific role and decision:
-
-| Query | Primary User | Key Decision Enabled |
-|-------|--------------|----------------------|
-| **1. Market Pricing** | Pricing Analyst, Nawy Shares Committee | Which markets to prioritize? |
-| **2. Broker Performance** | Nawy Partners Team | Which brokers deserve exclusive inventory? |
-| **3. Mortgage Default** | Risk Team, Securitization Partners | Should we tighten underwriting? |
-| **4. Shares ROI** | Investment Committee, Marketing | Which offerings to replicate? |
-| **5. Occupancy** | Unlocked Operations, Owner Relations | Which properties to acquire/deprioritize? |
-| **6. CLV** | VIP Relations, Marketing | Who are the VIPs worth retaining? |
-| **7. Cross-Sell** | Growth Team, CRM Automation | Who to target with which next product? |
-| **8. Property Profitability** | Asset Management, Developer Relations | Which assets to promote or exit? |
-| **9. Lead Funnel** | Sales Operations, Broker Enablement | Where to fix pipeline bottlenecks? |
-| **10. Executive KPIs** | CEO, Board, Investors | How is the platform performing? |
-
----
 
 ## 🗂️ Query Categories
 
