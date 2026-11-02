@@ -1,4 +1,4 @@
-# 🏢 Developer Consistency Scorecard — Nawy Shares
+#  Developer Consistency Scorecard — Nawy Shares
 
 > **A SQL-based analytical tool that ranks real estate developers by the consistency of returns on Nawy Shares fractional investment offerings.**
 
@@ -9,7 +9,7 @@
 
 
 
-## 🎯 Overview
+##  Overview
 
 This analysis answers a single critical investor question:
 
@@ -21,7 +21,7 @@ A single successful offering does not prove skill — it could be luck. What mat
 
 ---
 
-## ❓ Business Question
+##  Business Question
 
 | Aspect | Detail |
 |--------|--------|
@@ -46,7 +46,7 @@ A single successful offering does not prove skill — it could be luck. What mat
 
 ---
 
-## 🔬 Methodology
+##  Methodology
 
 The query works in **three stages**:
 
